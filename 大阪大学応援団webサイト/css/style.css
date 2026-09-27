@@ -1,0 +1,1588 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #ffffff;
+    color: #111111;
+    font-family: sans-serif;
+}
+
+/* ヘッダー */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+/* ハンバーガーメニュー */
+
+.menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+    /* 背景色に応じて自動的に反転 */
+    mix-blend-mode: difference;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    z-index: 999;
+
+   background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    flex-direction: column;
+    padding: 100px 40px;
+
+    transform: translateX(100%);
+    transition: transform 0.6s ease;
+}
+
+.menu.open {
+    transform: translateX(0);
+}
+
+.menu a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.menu a:hover {
+    opacity: 0.6;
+}
+
+/* メインビジュアル */
+
+/* =========================
+   HOME HERO
+   ========================= */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+
+    background-color: #111111;
+    color: white;
+}
+
+
+/* =========================
+   背景写真
+   ========================= */
+
+.hero-background {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.58),
+            rgba(0, 0, 0, 0.58)
+        ),
+        url("../images/ouendan.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0.55;
+
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.5s ease;
+}
+
+
+/* =========================
+   最初のタイトル
+   ========================= */
+
+.hero-intro {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 12%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    transition:
+        opacity 0.8s ease,
+        transform 1s ease;
+}
+
+.hero-small {
+    font-size: 13px;
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.hero-intro h1 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 82px;
+    line-height: 1.15;
+
+    margin: 0;
+
+    color: white;
+}
+
+.hero-scroll {
+    margin-top: 60px;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.8;
+}
+
+
+/* =========================
+   燦革
+   ========================= */
+
+.san-kaku {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    transform: scale(0.75);
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* スクロール後 */
+
+.hero.scrolled .hero-background {
+    opacity: 0.18;
+    transform: scale(1);
+}
+
+.hero.scrolled .hero-intro {
+    opacity: 0;
+
+    transform:
+        translateY(-65%);
+}
+
+.hero.scrolled .san-kaku {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+/* =========================
+   盾
+   ========================= */
+
+.shield {
+    position: relative;
+
+    width: 420px;
+    height: 520px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #D4AF37;
+
+    border: 3px solid #D4AF37;
+
+    clip-path: polygon(
+        8% 0,
+        92% 0,
+        100% 8%,
+        100% 62%,
+        94% 75%,
+        82% 87%,
+        50% 100%,
+        18% 87%,
+        6% 75%,
+        0 62%,
+        0 8%
+    );
+
+    background-color: rgba(20, 20, 20, 0.65);
+
+    box-shadow:
+        0 0 0 1px rgba(212, 175, 55, 0.25),
+        0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================
+   盾の文字
+   ========================= */
+
+.shield-small {
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    margin: 0 0 15px;
+}
+
+.brush-text {
+    font-family: "Yuji Boku", serif;
+
+    font-size: 150px;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    text-shadow:
+        3px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.shield-reading {
+    margin-top: 30px;
+
+    font-size: 14px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================
+   スマートフォン
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .hero-intro {
+        left: 8%;
+    }
+
+    .hero-intro h1 {
+        font-size: 52px;
+    }
+
+    .hero-small {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .shield {
+        width: 290px;
+        height: 380px;
+    }
+
+    .brush-text {
+        font-size: 105px;
+    }
+}
+
+/* 各セクション */
+
+.about,
+.parts,
+.performance,
+.history {
+    padding: 120px 10%;
+}
+
+.section-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+section h2 {
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+/* ABOUT */
+
+.about {
+    background-color: white;
+}
+
+.about p:not(.section-label) {
+    max-width: 700px;
+    line-height: 2;
+    font-size: 17px;
+}
+
+/* PARTS */
+
+.parts {
+    background-color: #f2f2f2;
+}
+
+.parts-container {
+    display: flex;
+    gap: 30px;
+}
+
+.part {
+    flex: 1;
+    padding: 50px 30px;
+    background-color: white;
+    color: #111111;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+
+.part:hover {
+    transform: translateY(-5px);
+}
+
+.part h3 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.part p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* PERFORMANCE */
+
+.performance {
+    background-color: black;
+    color: white;
+}
+
+.performance p:not(.section-label) {
+    max-width: 700px;
+    line-height: 2;
+    font-size: 17px;
+}
+
+/* HISTORY */
+
+.history {
+    background-color: white;
+}
+
+.history p:not(.section-label) {
+    line-height: 2;
+    font-size: 17px;
+}
+
+/* フッター */
+
+footer {
+    padding: 50px 10%;
+    background-color: #111111;
+    color: white;
+    font-size: 12px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* スマホ */
+
+@media (max-width: 700px) {
+
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    section h2 {
+        font-size: 36px;
+    }
+
+    .parts-container {
+        flex-direction: column;
+    }
+
+    .about,
+    .parts,
+    .performance,
+    .history {
+        padding: 80px 7%;
+    }
+
+    .menu {
+        width: 80%;
+    }
+}
+/* 明朝体にする部分 */
+h1,
+h2,
+h3,
+.menu a {
+    font-family: "Noto Serif JP", serif;
+}
+.about-hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 120px 10%;
+}
+
+.about-hero > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0.15;
+
+    z-index: 0;
+}
+
+.about-content {
+    position: relative;
+    z-index: 1;
+
+    max-width: 800px;
+}
+
+.about-content h1 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 60px;
+    margin: 0 0 50px;
+}
+
+.about-content p:not(.section-label) {
+    font-size: 17px;
+    line-height: 2.2;
+    margin-bottom: 25px;
+}
+.link-section {
+    margin-top: 80px;
+    max-width: 900px;
+}
+
+.link-category {
+    font-family: "Noto Serif JP", serif;
+    font-size: 32px;
+    font-weight: 700;
+    border-bottom: 2px solid #111;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+
+.link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10px;
+    border-bottom: 1px solid #ccc;
+    color: #111;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.link-item:hover {
+    opacity: 0.5;
+}
+
+.link-item span:last-child {
+    font-size: 20px;
+}
+.links-page {
+    padding-left: 15%;
+}
+/* 各部紹介ページを少し右にずらす */
+
+.leader-page,
+.leader-greeting,
+.leader-activity,
+.leader-training,
+.leader-instagram,
+
+.cheer-page,
+.cheer-greeting,
+.cheer-activity,
+.cheer-training,
+.cheer-instagram,
+
+.band-page,
+.band-greeting,
+.band-activity,
+.band-training,
+.band-instagram {
+    padding-left: 15%;
+}
+.member-page,
+.member-year {
+    padding-left: 12%;
+}
+/* =========================
+   MEMBER
+   ========================= */
+
+.member-page {
+    padding: 120px 10% 80px 12%;
+}
+
+.member-page h1 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 60px;
+    margin: 0 0 35px;
+}
+
+.member-intro {
+    font-size: 17px;
+    line-height: 2;
+    max-width: 700px;
+}
+
+
+/* 学年ごとのセクション */
+
+.member-year {
+    padding: 80px 10% 100px 12%;
+}
+
+.member-year:nth-of-type(even) {
+    background-color: #f2f2f2;
+}
+
+.member-year h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 48px;
+    margin: 0 0 50px;
+}
+
+
+/* 団員一覧 */
+
+.member-list {
+    max-width: 900px;
+}
+
+
+/* 一人分 */
+
+.member-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    padding: 30px 0;
+
+    border-bottom: 1px solid #d0d0d0;
+}
+
+
+/* 写真 */
+
+.member-photo {
+    width: 130px;
+    height: 130px;
+
+    flex-shrink: 0;
+
+    background-color: #e8e8e8;
+
+    overflow: hidden;
+}
+
+
+/* 写真が入った場合 */
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* 個人情報 */
+
+.member-info {
+    flex: 1;
+}
+
+.member-info h3 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 27px;
+
+    margin: 0 0 15px;
+}
+
+.member-info p {
+    margin: 5px 0;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* スマートフォン */
+
+@media (max-width: 700px) {
+
+    .member-page {
+        padding: 100px 7% 60px;
+    }
+
+    .member-page h1 {
+        font-size: 42px;
+    }
+
+    .member-year {
+        padding: 70px 7%;
+    }
+
+    .member-year h2 {
+        font-size: 36px;
+    }
+
+    .member-card {
+        gap: 25px;
+    }
+
+    .member-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .member-info h3 {
+        font-size: 22px;
+    }
+
+    .member-info p {
+        font-size: 14px;
+    }
+
+}
+/* =========================
+   ABOUT
+   ========================= */
+
+.about-hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    padding: 140px 10% 140px 12%;
+}
+
+
+/* 背景写真 */
+
+.about-hero > img {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0.15;
+
+    z-index: 0;
+}
+
+
+/* ABOUT全体 */
+
+.about-content {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 1100px;
+}
+
+
+/* ABOUTタイトル */
+
+.about-content > h1 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 64px;
+
+    margin: 0 0 60px;
+}
+
+
+/* =========================
+   団長挨拶カード
+   ========================= */
+
+.leader-message {
+    background-color: rgba(255, 255, 255, 0.95);
+
+    color: #111111;
+
+    padding: 55px 60px;
+
+    margin-bottom: 80px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+/* MESSAGEタイトル */
+
+.leader-message-header {
+    margin-bottom: 40px;
+}
+
+.leader-message-header .section-label {
+    margin-bottom: 10px;
+}
+
+.leader-message-header h2 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 40px;
+
+    margin: 0;
+}
+
+
+/* 写真＋文章 */
+
+.leader-message-body {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 50px;
+}
+
+
+/* 団長写真 */
+
+.leader-message-photo {
+    width: 180px;
+    height: 230px;
+
+    flex-shrink: 0;
+
+    background-color: #dddddd;
+
+    overflow: hidden;
+}
+
+.leader-message-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* 団長挨拶本文 */
+
+.leader-message-text {
+    flex: 1;
+
+    max-width: 650px;
+}
+
+.leader-title {
+    font-size: 13px !important;
+
+    letter-spacing: 2px;
+
+    margin: 0 0 8px !important;
+}
+
+.leader-message-text h3 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 28px;
+
+    margin: 0 0 25px;
+}
+
+.leader-message-text p {
+    font-size: 16px;
+
+    line-height: 2;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   ABOUT本文
+   ========================= */
+
+.about-description {
+    max-width: 750px;
+
+    color: #111111;
+
+    background-color: rgba(255, 255, 255, 0.92);
+
+    padding: 45px 50px;
+}
+
+.about-description p {
+    font-size: 17px;
+
+    line-height: 2.2;
+
+    margin: 0 0 20px;
+}
+
+.about-description p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   スマートフォン
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .about-hero {
+        padding: 100px 7%;
+    }
+
+    .about-content > h1 {
+        font-size: 44px;
+    }
+
+    .leader-message {
+        padding: 35px 30px;
+
+        margin-bottom: 50px;
+    }
+
+    .leader-message-header h2 {
+        font-size: 32px;
+    }
+
+    .leader-message-body {
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+    .leader-message-photo {
+        width: 150px;
+        height: 190px;
+    }
+
+    .about-description {
+        padding: 30px;
+    }
+
+}
+/* =========================
+   HISTORY
+   ========================= */
+
+
+/* =========================
+   HISTORY HERO
+   ========================= */
+
+.history-hero {
+    min-height: 75vh;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 120px 10% 100px 12%;
+
+    background-color: #111111;
+
+    color: white;
+}
+
+.history-hero-content {
+    max-width: 900px;
+}
+
+.history-hero h1 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 72px;
+
+    line-height: 1.2;
+
+    margin: 0 0 40px;
+}
+
+.history-lead {
+    font-size: 17px;
+
+    letter-spacing: 2px;
+}
+
+
+
+/* =========================
+   HISTORY TIMELINE
+   ========================= */
+
+.history-timeline {
+    padding: 120px 10% 140px 12%;
+    background-color: #f2f2f2;
+}
+
+.history-title {
+    margin-bottom: 80px;
+}
+
+.history-title h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 52px;
+    margin: 0;
+}
+
+
+/* タイムライン全体 */
+
+.timeline {
+    max-width: 1000px;
+    position: relative;
+    padding-left: 180px;
+}
+
+
+/* 縦線 */
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    /* 点の位置に合わせる */
+    left: 330px;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background-color: #999999;
+}
+
+
+/* 1つの歴史 */
+
+.timeline-item {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 120px 1fr;
+
+    gap: 50px;
+
+    padding-bottom: 100px;
+
+    /* 最初は少し下に隠す */
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* スクロールで表示された後 */
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* 年 */
+
+.timeline-year {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+/* 丸 */
+
+.timeline-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: 144px;
+    top: 5px;
+
+    width: 13px;
+    height: 13px;
+
+    background-color: #111111;
+
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+
+/* 内容 */
+
+.timeline-content {
+    padding-left: 20px;
+}
+
+.timeline-label {
+    font-size: 11px !important;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+
+    margin: 0 0 12px !important;
+}
+
+.timeline-content h3 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 30px;
+
+    margin: 0 0 20px;
+}
+
+.timeline-content p {
+    font-size: 16px;
+
+    line-height: 2;
+
+    max-width: 650px;
+}
+
+
+/* =========================
+   ARCHIVE NOTE
+   ========================= */
+
+.history-note {
+    padding: 120px 10% 140px 12%;
+
+    background-color: white;
+}
+
+.history-note h2 {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 48px;
+
+    margin: 0 0 40px;
+}
+
+.history-note p:not(.section-label) {
+    max-width: 700px;
+
+    font-size: 17px;
+
+    line-height: 2.2;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .history-timeline {
+        padding: 90px 7% 100px;
+    }
+
+    .history-title h2 {
+        font-size: 40px;
+    }
+
+    .timeline {
+        padding-left: 95px;
+    }
+
+    .timeline::before {
+        left: 70px;
+        width: 2px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 80px 1fr;
+        gap: 25px;
+        padding-bottom: 70px;
+    }
+
+    .timeline-year {
+        font-size: 21px;
+    }
+
+    .timeline-item::before {
+        left: 70px;
+        width: 12px;
+        height: 12px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-content {
+        padding-left: 10px;
+    }
+
+    .timeline-content h3 {
+        font-size: 23px;
+    }
+
+    .history-note {
+        padding: 90px 7%;
+    }
+
+    .history-note h2 {
+        font-size: 38px;
+    }
+}
+
+/* =========================
+   HOME SECTION LINK
+   ========================= */
+
+.home-section-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.home-section-link:hover h2 {
+    opacity: 0.6;
+    transform: translateX(8px);
+}
+
+.home-section-link h2 {
+    transition: 0.3s ease;
+}
+/* =========================
+   PERFORMANCE PAGE
+   ========================= */
+
+.performance-page {
+    padding: 140px 10% 100px 12%;
+    background-color: white;
+}
+
+.performance-page h1 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 64px;
+    margin: 0 0 35px;
+}
+
+.performance-intro {
+    max-width: 700px;
+    font-size: 17px;
+    line-height: 2;
+}
+
+
+/* =========================
+   PERFORMANCE CATEGORY
+   ========================= */
+
+.performance-category {
+    padding: 100px 10% 120px 12%;
+    background-color: #f2f2f2;
+}
+
+.performance-category h2 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 48px;
+    margin: 0 0 60px;
+}
+
+
+/* =========================
+   SONG LIST
+   ========================= */
+
+.song-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 30px 10px;
+    border: none;
+    border-bottom: 1px solid #c8c8c8;
+    background: transparent;
+    color: #111;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.lyrics-board {
+    max-height: 0;
+    overflow: hidden;
+    margin-left: 80px;
+    background-color: #eeeeeb;
+    color: #222;
+    padding: 0 50px;
+    opacity: 0;
+    border-left: 3px solid #222;
+    transition:
+        max-height 0.7s ease,
+        padding 0.6s ease,
+        opacity 0.4s ease;
+}
+
+.lyrics-board.open {
+    padding: 45px 50px;
+    opacity: 1;
+}
+
+.lyrics-title {
+    font-family: "Noto Serif JP", serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 30px;
+}
+
+.lyrics {
+    white-space: pre-line;
+    font-size: 17px;
+    line-height: 2.3;
+    max-width: 700px;
+}
+
+.song-item.active .song-arrow {
+    transform: rotate(90deg);
+}
+
+.song-item:hover {
+    padding-left: 25px;
+    background-color: white;
+}
+
+.song-item:hover .song-arrow {
+    transform: translateX(8px);
+}
+
+.song-item.active {
+    background-color: white;
+}
+
+/* =========================
+   OTHER
+   ========================= */
+
+.performance-other {
+    background-color: white;
+}
+
+.performance-other p:not(.section-label) {
+    max-width: 700px;
+
+    font-size: 17px;
+
+    line-height: 2;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .performance-page {
+        padding: 100px 7% 80px;
+    }
+
+    .performance-page h1 {
+        font-size: 48px;
+    }
+
+    .performance-category {
+        padding: 80px 7% 100px;
+    }
+
+    .performance-category h2 {
+        font-size: 38px;
+    }
+
+    .song-number {
+        width: 55px;
+        font-size: 15px;
+    }
+
+    .song-info h3 {
+        font-size: 21px;
+    }
+
+    .song-arrow {
+        font-size: 20px;
+    }
+}
+/* =========================
+   LYRICS BOARD
+   ========================= */
+
+.song-item {
+    width: 100%;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.lyrics-board {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #111111;
+    color: white;
+
+    /* 左側を少し削る */
+    margin-left: 80px;
+
+    padding: 0 50px;
+
+    opacity: 0;
+    transition:
+        max-height 0.6s ease,
+        padding 0.6s ease,
+        opacity 0.4s ease;
+}
+
+.lyrics-board.open {
+    max-height: 800px;
+    padding: 45px 50px;
+    opacity: 1;
+}
+
+.lyrics-board.open {
+    max-height: 800px;
+
+    padding: 45px 50px;
+
+    opacity: 1;
+}
+
+.lyrics-title {
+    font-family: "Noto Serif JP", serif;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    margin: 0 0 30px;
+}
+
+.lyrics {
+    white-space: pre-line;
+
+    font-size: 17px;
+
+    line-height: 2.3;
+
+    max-width: 700px;
+}
+
+
+/* 開いているときの矢印 */
+
+.song-item.active .song-arrow {
+    transform: rotate(90deg);
+}
+
+.song-item.active {
+    background-color: white;
+}
+
+
+/* スマホ */
+
+@media (max-width: 700px) {
+
+    .lyrics-board.open {
+        padding: 35px 25px;
+    }
+
+    .lyrics-title {
+        font-size: 20px;
+    }
+
+    .lyrics {
+        font-size: 15px;
+        line-height: 2.1;
+    }
+}
+.lyrics-credit {
+    margin: -15px 0 30px;
+    font-size: 14px;
+    color: #777;
+}
+
+.youtube-link {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 12px 20px;
+    border: 1px solid #777;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.youtube-link:hover {
+    background-color: white;
+    color: #111;
+}
+/* =========================
+   MEMBER 集合写真
+   ========================= */
+
+.member-photo-hero {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 420px;
+    margin-bottom: 70px;
+    overflow: hidden;
+}
+
+.member-photo-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.member-photo-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.38);
+    color: white;
+
+    text-align: center;
+}
+
+.member-photo-overlay .section-label {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.member-photo-overlay h2 {
+    margin: 0;
+    font-family: "Noto Serif JP", serif;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+/* 個人写真との間隔 */
+.member-photo-hero + .member-list {
+    margin-top: 0;
+}
+
+
+/* スマートフォン */
+@media (max-width: 700px) {
+
+    .member-photo-hero {
+        height: 300px;
+        margin-bottom: 50px;
+    }
+
+    .member-photo-overlay h2 {
+        font-size: 44px;
+    }
+
+}
+.member-ichikisei .member-photo-hero {
+    overflow: hidden;
+}
+
+.member-ichikisei .member-photo-hero img {
+    width: 120%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+    object-position: right top;
+    transform: translateX(-16.67%);
+}
